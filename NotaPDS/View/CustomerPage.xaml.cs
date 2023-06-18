@@ -1,16 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using BAPDS.Model;
-using BAPDS.ViewModel;
+﻿using NotaPDS.ViewModel;
 
-namespace BAPDS.View;
+namespace NotaPDS.View;
 
 public partial class CustomerPage : ContentPage
 {
-
     public CustomerPage(CustomerPageViewModel customerPageViewModel)
-	{
-		InitializeComponent();
-
-		BindingContext = customerPageViewModel;
-	}
+    {
+        InitializeComponent();
+        BindingContext = customerPageViewModel;
+    }
 }

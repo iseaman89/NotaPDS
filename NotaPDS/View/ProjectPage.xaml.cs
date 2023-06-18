@@ -1,8 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using BAPDS.Model;
-using BAPDS.ViewModel;
+﻿using NotaPDS.ViewModel;
 
-namespace BAPDS.View;
+namespace NotaPDS.View;
 
 public partial class ProjectPage : ContentPage
 {
@@ -10,7 +8,6 @@ public partial class ProjectPage : ContentPage
     public ProjectPage(ProjectPageViewModel projectPageViewModel)
     {
         InitializeComponent();
-
         BindingContext = projectPageViewModel;
     }
 }

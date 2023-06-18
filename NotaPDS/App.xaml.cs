@@ -1,4 +1,4 @@
-﻿namespace BAPDS;
+﻿namespace NotaPDS;
 
 public partial class App : Application
 {
@@ -9,4 +9,3 @@ public partial class App : Application
 		MainPage = new AppShell();
 	}
 }
-

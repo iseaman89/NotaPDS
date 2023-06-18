@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BAPDS.Service
+﻿namespace NotaPDS.Service
 {
     public class NavigationService : INavigationService
     {
@@ -11,4 +9,3 @@ namespace BAPDS.Service
         }
     }
 }
-

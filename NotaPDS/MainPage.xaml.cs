@@ -1,6 +1,6 @@
-﻿using BAPDS.ViewModel;
+﻿using NotaPDS.ViewModel;
 
-namespace BAPDS;
+namespace NotaPDS;
 
 public partial class MainPage : ContentPage
 {

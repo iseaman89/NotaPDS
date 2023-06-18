@@ -1,5 +1,4 @@
-﻿using System;
-namespace BAPDS.Model
+﻿namespace NotaPDS.Model
 {
 	public class ChatMessage
 	{
@@ -8,4 +7,3 @@ namespace BAPDS.Model
 		public string Sender { get; set; }
 	}
 }
-

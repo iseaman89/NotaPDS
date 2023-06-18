@@ -1,12 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.Intrinsics.X86;
-using BAPDS.Model;
-using BAPDS.ViewModel;
-using FireSharp.Config;
-using FireSharp.Interfaces;
-using Newtonsoft.Json;
+﻿using NotaPDS.ViewModel;
 
-namespace BAPDS.View;
+namespace NotaPDS.View;
 
 public partial class ProjectChoisePage : ContentPage
 {

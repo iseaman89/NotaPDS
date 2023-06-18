@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:BAPDS.Model"
-             xmlns:viewmodel="clr-namespace:BAPDS.ViewModel"
+             xmlns:model="clr-namespace:NotaPDS.Model"
+             xmlns:viewmodel="clr-namespace:NotaPDS.ViewModel"
              x:DataType="viewmodel:ProjectChoiseViewModel"
-             x:Class="BAPDS.View.ProjectChoisePage"
+             x:Class="NotaPDS.View.ProjectChoisePage"
              Title="ProjectChoisePage">
-
+    <Grid RowDefinitions="*, Auto">
     <CollectionView ItemsSource="{Binding Projects}"
                     SelectionMode="None">
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:ProjectDB">
-                <Grid Padding="10">
-                    <Frame HeightRequest="125">
+            <DataTemplate x:DataType="model:Project">
+                <ScrollView Padding="10">
+                    <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer CommandParameter="{Binding .}"
                                                   Command="{Binding Source={x:RelativeSource
@@ -20,15 +22,32 @@
                                                   Path=GoToProjectCommand}"/>
 
                         </Frame.GestureRecognizers>
-                        <Label Text="{Binding FullNumber}"/>
+
+                        <HorizontalStackLayout Spacing="10">
+                                <Label FontSize="25"
+                                Text="{Binding FullNumber}"/>
+                                <Label FontSize="25"
+                                Text="{Binding Customer.Name}"/>
+
+                            </HorizontalStackLayout>
 
                     </Frame>
 
-                </Grid>
+                </ScrollView>
 
             </DataTemplate>
 
         </CollectionView.ItemTemplate>
     </CollectionView>
-
+            <Button Text="+"
+                    FontSize="Title"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    HeightRequest="70"
+                    WidthRequest="70"
+                    CornerRadius="20"
+                    Margin="0, 0, 20, 20"
+                    Command="{Binding ShowNewProjectPopupCommand}"/>
+  
+    </Grid>
 </ContentPage>

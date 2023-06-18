@@ -2,7 +2,7 @@
 
 namespace NotaPDSAPI.Model
 {
-	public partial class ProjectDB
+	public partial class Project
 	{
         [Key]
         public int Id { get; set; }
@@ -10,6 +10,7 @@ namespace NotaPDSAPI.Model
         public string? YearNumber { get; set; }
         public string? ProjectNumber { get; set; }
         public string? FullNumber { get; set; }
-        public Customer? CustomerData { get; set; }
+
+        public virtual Customer? Customer { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-namespace BAPDS.Model
+﻿namespace NotaPDS.Model
 {
-	public class Customer
+	public class Customer 
 	{
-		public string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 		public string ContactPersonFullName { get; set; }
 		public string ContactPersonTel { get; set; }
 		public string Adresse { get; set; }

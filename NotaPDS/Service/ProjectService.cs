@@ -1,47 +1,118 @@
-﻿using System;
-using BAPDS.Model;
-using FireSharp.Config;
-using FireSharp.Interfaces;
-using System.Net.Http.Json;
-using Newtonsoft.Json;
+﻿using NotaPDS.Model;
+using System.Diagnostics;
+using System.Text.Json;
+using System.Text;
 
-namespace BAPDS.Service
+namespace NotaPDS.Service
 {
-	public class ProjectService
-	{
-        private IFirebaseConfig _config = new FirebaseConfig
+    public class ProjectService : RestDataService, IRestDataService<Project>
+    {
+        //Add
+        public async Task AddItemAsync(Project item)
         {
-            AuthSecret = "1sbCn04JQ7vckC9lg8caux4dI8xFUyiAGIAPmhSz",
-            BasePath = "https://bapds-48d75-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
-
-        private IFirebaseClient _client;
-
-        private HttpClient _httpClient;
-
-		private List<ProjectDB> _projects = new ();
-
-		public ProjectService()
-		{
-			_httpClient = new HttpClient();
-            _client = new FireSharp.FirebaseClient(_config);
-        }
-
-		public async Task<List<ProjectDB>> GetProjects()
-		{
-			if (_projects.Count > 0) return _projects;
-            var response = await _client.GetAsync(@"ProjectDB");
-
-            Dictionary<string, ProjectDB> projectDictionary = JsonConvert.DeserializeObject<Dictionary<string, ProjectDB>>(response.Body.ToString());
-
-            foreach (var project in projectDictionary)
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
             {
-                project.Value.FullNumber = project.Key;
-                _projects.Add(project.Value);
+                Debug.WriteLine("No internet access...");
+                return;
             }
 
-            return _projects;
-        }
-	}
-}
+            try
+            {
+                string jsonProject = JsonSerializer.Serialize<Project>(item, _jsonSerializerOptions);
+                StringContent content = new StringContent(jsonProject, Encoding.UTF8, "application/json");
 
+                HttpResponseMessage response = await _httpClient.PostAsync($"{_url}/project", content);
+
+                if (response.IsSuccessStatusCode) Debug.WriteLine("Successfully created!");
+                else Debug.WriteLine("Non Http 2xx response");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Whoops exception: {ex.Message}");
+            }
+
+            return;
+        }
+
+        //Delete
+        public async Task DeleteItemAsync(int id)
+        {
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("No internet access...");
+                return;
+            }
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"{_url}/project/{id}");
+
+                if (response.IsSuccessStatusCode) Debug.WriteLine("Successfully deleted!");
+                else Debug.WriteLine("Non Http 2xx response");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Whoops exception: {ex.Message}");
+            }
+
+            return;
+        }
+
+        //Get
+        public async Task<List<Project>> GetAllItemsAsync()
+        {
+            List<Project> projects = new List<Project>();
+
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("No internet access...");
+                return projects;
+            }
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{_url}/project");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    projects = JsonSerializer.Deserialize<List<Project>>(content, _jsonSerializerOptions);
+                }
+                else Debug.WriteLine("Non Http 2xx response");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Whoops exception: {ex.Message}");
+            }
+
+            return projects;
+        }
+
+        //Update
+        public async Task UpdateItemAsync(Project item)
+        {
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("No internet access...");
+                return;
+            }
+
+            try
+            {
+                string jsonProject = JsonSerializer.Serialize<Project>(item, _jsonSerializerOptions);
+                StringContent content = new StringContent(jsonProject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await _httpClient.PutAsync($"{_url}/project/{item.Id}", content);
+
+                if (response.IsSuccessStatusCode) Debug.WriteLine("Successfully created!");
+                else Debug.WriteLine("Non Http 2xx response");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Whoops exception: {ex.Message}");
+            }
+
+            return;
+        }
+    }
+}

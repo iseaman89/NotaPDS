@@ -1,8 +1,7 @@
-﻿using System;
-using BAPDS.Service;
+﻿using NotaPDS.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace BAPDS.ViewModel
+namespace NotaPDS.ViewModel
 {
 	public partial class BaseViewModel : ObservableObject
 	{
@@ -13,4 +12,3 @@ namespace BAPDS.ViewModel
 		}
 	}
 }
-

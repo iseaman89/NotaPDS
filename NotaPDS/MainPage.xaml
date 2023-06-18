@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:BAPDS.Model"
-             xmlns:viewmodel="clr-namespace:BAPDS.ViewModel"
+             xmlns:model="clr-namespace:NotaPDS.Model"
+             xmlns:viewmodel="clr-namespace:NotaPDS.ViewModel"
              x:DataType="viewmodel:MainPageViewModel"
-             x:Class="BAPDS.MainPage"
+             x:Class="NotaPDS.MainPage"
              >
 
     <ScrollView>
@@ -26,16 +26,16 @@
                 HorizontalOptions="Center" />
 
             <Entry
-                x:Name="EmailEntry"
+                Text="{Binding Email}"
                 Placeholder="Entry Email..."
                 WidthRequest="400"
                 />
 
             <Entry
-                x:Name="PasswordEntry"
+                Text="{Binding Password}"
                 Placeholder="Entry Password..."
                 WidthRequest="400"
-                IsPassword="False"
+                IsPassword="True"
                 />
 
             <Button

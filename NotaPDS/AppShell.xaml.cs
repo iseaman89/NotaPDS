@@ -1,6 +1,6 @@
-﻿using BAPDS.View;
+﻿using NotaPDS.View;
 
-namespace BAPDS;
+namespace NotaPDS;
 
 public partial class AppShell : Shell
 {
@@ -12,6 +12,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(ProjectPage), typeof(ProjectPage));
         Routing.RegisterRoute(nameof(CustomerPage), typeof(CustomerPage));
         Routing.RegisterRoute(nameof(ChatPage), typeof(ChatPage));
+		Routing.RegisterRoute(nameof(NewProjectPage), typeof(NewProjectPage));
     }
 }
-

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaPDS", "NotaPDS\NotaPDS.csproj", "{A9E83410-100C-4E82-B07D-B79D279745E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotaPDSAPI", "NotaPDSAPI\NotaPDSAPI.csproj", "{B25857B3-218A-4D1D-9756-F70D02B1FEB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{A9E83410-100C-4E82-B07D-B79D279745E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9E83410-100C-4E82-B07D-B79D279745E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9E83410-100C-4E82-B07D-B79D279745E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B25857B3-218A-4D1D-9756-F70D02B1FEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25857B3-218A-4D1D-9756-F70D02B1FEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25857B3-218A-4D1D-9756-F70D02B1FEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25857B3-218A-4D1D-9756-F70D02B1FEB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

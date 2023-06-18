@@ -1,25 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:BAPDS.Model"
-             xmlns:viewmodel="clr-namespace:BAPDS.ViewModel"
+             xmlns:viewmodel="clr-namespace:NotaPDS.ViewModel"
              x:DataType="viewmodel:ProjectPageViewModel"
-             x:Class="BAPDS.View.ProjectPage"
-             x:Name="ContentProjectPage"
+             x:Class="NotaPDS.View.ProjectPage"
              Title="ProjectPage">
     <ScrollView
-        BackgroundColor="PapayaWhip">
+        BackgroundColor="White">
         <VerticalStackLayout>
-            
-             <Frame HeightRequest="125">
+
+             <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer CommandParameter="{model:ProjectDB}"
+                            <TapGestureRecognizer CommandParameter="{Binding Project}"
                                                   Command="{Binding Source={RelativeSource
                                                   AncestorType={x:Type viewmodel:ProjectPageViewModel}}, Path=GoToCustomerCommand}">
                             </TapGestureRecognizer>
 
                         </Frame.GestureRecognizers>
-                        <Label Text="{Binding Project.CustomerData.Name}"/>
+                        <Label FontSize="25"
+                    Text="Kunde Information"/>
+
+              </Frame>
+             <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer>
+                            </TapGestureRecognizer>
+
+                        </Frame.GestureRecognizers>
+                        <Label FontSize="25"
+                    Text="Dokumentation"/>
+
+              </Frame>
+             <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer>
+                            </TapGestureRecognizer>
+
+                        </Frame.GestureRecognizers>
+                        <Label FontSize="25"
+                    Text="Files"/>
+
+              </Frame>
+             <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToChatCommand}">
+                            </TapGestureRecognizer>
+
+                        </Frame.GestureRecognizers>
+                        <Label FontSize="25"
+                    Text="Chat"/>
 
               </Frame>
 

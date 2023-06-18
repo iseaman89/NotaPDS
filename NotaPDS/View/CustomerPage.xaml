@@ -1,40 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage  xmlns:controls="http://schemas.microsoft.com/dotnet/2021/maui/design"
+<ContentPage 
               xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:BAPDS.Model"
-             xmlns:viewmodel="clr-namespace:BAPDS.ViewModel"
+             xmlns:model="clr-namespace:NotaPDS.Model"
+             xmlns:viewmodel="clr-namespace:NotaPDS.ViewModel"
              x:DataType="viewmodel:CustomerPageViewModel"
-             x:Class="BAPDS.View.CustomerPage"
+             x:Class="NotaPDS.View.CustomerPage"
              Title="Kunde Information">
-
-    <ScrollView>
-    <controls:VerticalStackLayout Padding="10">
-        <Frame HeightRequest="125">
-            <Label Text="{Binding Path=Project.CustomerData.Name,
-                   StringFormat='Kunde: {0}'}"/>
-
-        </Frame>
-        <Frame HeightRequest="125">
-            <Label Text="{Binding Project.FullNumber}"/>
-
-        </Frame>
-        <Frame HeightRequest="125">
-            <Label Text="{Binding Project.CustomerData.ContactPersonFullName}"/>
-
-        </Frame>
-        <Frame HeightRequest="125">
-            <Label Text="{Binding Project.CustomerData.ContactPersonTel}"/>
-
-        </Frame>
-        <Frame HeightRequest="125">
-            <Label Text="{Binding Project.CustomerData.ImportantInformation}"/>
-
-        </Frame>
-            <Frame>
-                <Label Text="retet"/>
-
+     <StackLayout Margin="10"
+                  BackgroundColor="White">
+            <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                <HorizontalStackLayout>
+                <Label TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                Text="Kunde: " />
+                <Label TextColor="Black"
+                       FontSize="20"
+                       Text="{Binding Project.Customer.Name}"/>
+            </HorizontalStackLayout>
             </Frame>
-    </controls:VerticalStackLayout>
-    </ScrollView>
+         <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                <HorizontalStackLayout>
+                <Label TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                Text="Adresse: " />
+                <Label TextColor="Black"
+                       FontSize="20"
+                       Text="{Binding Project.Customer.Adresse}"/>
+            </HorizontalStackLayout>
+            </Frame>
+         <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                <HorizontalStackLayout>
+                <Label TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                Text="Ansprächpartner/in: " />
+                <Label TextColor="Black"
+                       FontSize="20"
+                       Text="{Binding Project.Customer.ContactPersonFullName}"/>
+            </HorizontalStackLayout>
+            </Frame>
+         <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                <HorizontalStackLayout>
+                <Label TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                Text="Tel: " />
+                <Label TextColor="Black"
+                       FontSize="20"
+                       Text="{Binding Project.Customer.ContactPersonTel}"/>
+            </HorizontalStackLayout>
+            </Frame>
+         <Frame CornerRadius="5" 
+                    HasShadow="true" 
+                    Margin="10" >
+                <HorizontalStackLayout>
+                <Label TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                Text="Wichtige Information: " />
+                <Label TextColor="Black"
+                       FontSize="20"
+                       Text="{Binding Project.Customer.ImportantInformation}"/>
+            </HorizontalStackLayout>
+            </Frame>
+        </StackLayout>   
 </ContentPage>
