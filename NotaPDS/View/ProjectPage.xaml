@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:BAPDS.Model"
+             xmlns:viewmodel="clr-namespace:BAPDS.ViewModel"
+             x:DataType="viewmodel:ProjectPageViewModel"
+             x:Class="BAPDS.View.ProjectPage"
+             x:Name="ContentProjectPage"
+             Title="ProjectPage">
+    <ScrollView
+        BackgroundColor="PapayaWhip">
+        <VerticalStackLayout>
+            
+             <Frame HeightRequest="125">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{model:ProjectDB}"
+                                                  Command="{Binding Source={RelativeSource
+                                                  AncestorType={x:Type viewmodel:ProjectPageViewModel}}, Path=GoToCustomerCommand}">
+                            </TapGestureRecognizer>
+
+                        </Frame.GestureRecognizers>
+                        <Label Text="{Binding Project.CustomerData.Name}"/>
+
+              </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
