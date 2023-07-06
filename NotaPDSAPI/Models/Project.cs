@@ -10,7 +10,7 @@ namespace NotaPDSAPI.Model
         public string? YearNumber { get; set; }
         public string? ProjectNumber { get; set; }
         public string? FullNumber { get; set; }
-
         public virtual Customer? Customer { get; set; }
+        public ICollection<ChatMessage>? Chat { get; set; }
     }
 }

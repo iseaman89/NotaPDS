@@ -17,7 +17,7 @@ namespace NotaPDSAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -33,6 +33,9 @@ namespace NotaPDSAPI.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("SenderId")
                         .HasColumnType("integer");
 
@@ -40,6 +43,8 @@ namespace NotaPDSAPI.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
 
                     b.HasIndex("SenderId");
 
@@ -128,7 +133,6 @@ namespace NotaPDSAPI.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("ProjectLeiterNumber")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Surname")
@@ -141,6 +145,10 @@ namespace NotaPDSAPI.Migrations
 
             modelBuilder.Entity("NotaPDSAPI.Model.ChatMessage", b =>
                 {
+                    b.HasOne("NotaPDSAPI.Model.Project", null)
+                        .WithMany("Chat")
+                        .HasForeignKey("ProjectId");
+
                     b.HasOne("NotaPDSAPI.Model.User", "Sender")
                         .WithMany()
                         .HasForeignKey("SenderId");
@@ -155,6 +163,11 @@ namespace NotaPDSAPI.Migrations
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("NotaPDSAPI.Model.Project", b =>
+                {
+                    b.Navigation("Chat");
                 });
 #pragma warning restore 612, 618
         }

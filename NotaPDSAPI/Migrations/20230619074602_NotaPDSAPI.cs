@@ -40,7 +40,7 @@ namespace NotaPDSAPI.Migrations
                     Email = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
                     MobileNumber = table.Column<string>(type: "text", nullable: true),
-                    ProjectLeiterNumber = table.Column<string>(type: "text", nullable: false),
+                    ProjectLeiterNumber = table.Column<string>(type: "text", nullable: true),
                     ProjectLeiter = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -78,17 +78,28 @@ namespace NotaPDSAPI.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Text = table.Column<string>(type: "text", nullable: true),
-                    SenderId = table.Column<int>(type: "integer", nullable: true)
+                    SenderId = table.Column<int>(type: "integer", nullable: true),
+                    ProjectId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ChatMessages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChatMessages_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ChatMessages_Users_SenderId",
                         column: x => x.SenderId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChatMessages_ProjectId",
+                table: "ChatMessages",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChatMessages_SenderId",

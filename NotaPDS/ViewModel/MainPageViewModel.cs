@@ -41,7 +41,7 @@ namespace NotaPDS.ViewModel
                 }
                 else
                 {
-                    Application.Current.MainPage.DisplayAlert("Warning!", "Email or Password is't correct!", "Ok");
+                    Shell.Current.DisplayAlert("Warning!", "Email or Password is't correct!", "Ok");
                 }
             }
         }

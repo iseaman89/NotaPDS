@@ -1,11 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.ResponseCompression;
 using NotaPDSAPI.Data;
 using NotaPDSAPI.Model;
+using NotaPDSAPI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<APIDBContext>(option =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("PostgreeConnection")));
+builder.Services.AddSignalR();
+builder.Services.AddResponseCompression(options =>
+{
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+        new[] { "application/octet-stream" });
+});
 
 var app = builder.Build();
 
@@ -181,5 +189,8 @@ app.MapDelete("api/chatmessage/{id}", async (APIDBContext context, int id) =>
 
     return Results.NoContent();
 });
+
+//Hub
+app.MapHub<ChatHub>("/chathub");
 
 app.Run();
